@@ -1,14 +1,31 @@
-image:
-  repository: ollama/ollama
-  tag: latest
-  pullPolicy: IfNotPresent
 
-service:
-  type: NodePort
-  port: 11434         # internal cluster port
-  nodePort: 31434     # port on the node (192.168.1.171:31434)
+ollama:
+  image:
+    repository: ollama/ollama
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 11434
+    nodePort: 31434
+  persistence:
+    enabled: true
+    existingClaim: ollama-pvc
+    mountPath: /root/.ollama
 
-persistence:
+webui:
   enabled: true
-  existingClaim: ollama-pvc
-  mountPath: /root/.ollama  # Where Ollama stores models
+  image:
+    repository: ghcr.io/open-webui/open-webui
+    tag: main
+    pullPolicy: IfNotPresent
+  
+  service:
+    type: NodePort
+    port: 8080
+    nodePort: 30000
+
+  persistence:
+    enabled: false
+  env:
+    OLLAMA_BASE_URL: "http://ollama:11434"

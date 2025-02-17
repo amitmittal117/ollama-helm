@@ -5,11 +5,11 @@ metadata:
   labels:
     app: ollama
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.ollama.service.type }}
   selector:
     app: ollama
   ports:
   - name: http
-    port: {{ .Values.service.port }}
+    port: {{ .Values.ollama.service.port }}
     targetPort: 11434
-    nodePort: {{ .Values.service.nodePort }}
+    nodePort: {{ .Values.ollama.service.nodePort }}
