@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "ollama-helm.fullname" . }}
+  name: ollama
   labels:
-    {{- include "ollama-helm.labels" . | nindent 4 }}
+    app: ollama
 spec:
   type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
   selector:
-    {{- include "ollama-helm.selectorLabels" . | nindent 4 }}
+    app: ollama
+  ports:
+  - name: http
+    port: {{ .Values.service.port }}
+    targetPort: 11434
+    nodePort: {{ .Values.service.nodePort }}
