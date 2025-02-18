@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ollama
+  namespace: ollama
   labels:
     app: ollama
 spec:
@@ -26,4 +27,4 @@ spec:
       volumes:
         - name: ollama-storage
           persistentVolumeClaim:
-            claimName: "{{ .Values.ollama.persistence.existingClaim }}"
+            claimName: ollama-pvc
