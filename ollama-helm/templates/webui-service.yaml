@@ -10,7 +10,7 @@ spec:
     app: "{{ .Values.webui.name }}"
   ports:
     - port: {{ .Values.webui.service.port }}
-      targetPort: 8080
+      targetPort: {{ .Values.webui.service.port }}
       nodePort: {{ .Values.webui.service.nodePort }}
       protocol: TCP
       name: http

@@ -11,5 +11,5 @@ spec:
   ports:
   - name: http
     port: {{ .Values.ollama.service.port }}
-    targetPort: 11434
+    targetPort: {{ .Values.ollama.service.port }}
     nodePort: {{ .Values.ollama.service.nodePort }}
