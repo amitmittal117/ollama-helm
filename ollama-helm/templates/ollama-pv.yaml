@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "{{ .Values.ollama.persistence.pvName }}"
+  namespace: "{{ .Values.ollama.name }}"
+  labels:
+    app: "{{ .Values.ollama.name }}"
+spec:
+  capacity:
+    storage: "{{ .Values.ollama.persistence.size }}"
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: "{{ .Values.ollama.persistence.storageClass }}"
+  hostPath:
+    path: "/mnt/ollama-models/{{ .Values.ollama.persistence.pvcName }}"

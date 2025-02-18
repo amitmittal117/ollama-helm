@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: open-webui
+  name: "{{ .Values.webui.name }}"
   labels:
-    app: open-webui
+    app: "{{ .Values.webui.name }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: open-webui
+      app: "{{ .Values.webui.name }}"
   template:
     metadata:
       labels:
-        app: open-webui
+        app: "{{ .Values.webui.name }}"
     spec:
       containers:
-      - name: open-webui
+      - name: "{{ .Values.webui.name }}"
         image: "{{ .Values.webui.image.repository }}:{{ .Values.webui.image.tag }}"
         imagePullPolicy: "{{ .Values.webui.image.pullPolicy }}"
         env:

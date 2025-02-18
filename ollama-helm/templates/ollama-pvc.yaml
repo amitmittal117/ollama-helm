@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ollama-pvc
-  namespace: ollama
+  name: "{{ .Values.ollama.persistence.pvcName }}"
+  namespace: "{{ .Values.ollama.name }}"
   labels:
-    app: ollama
+    app: "{{ .Values.ollama.name }}"
 spec:
   accessModes:
     - ReadWriteOnce

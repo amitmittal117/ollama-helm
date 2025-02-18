@@ -1,5 +1,6 @@
 
 ollama:
+  name: ollama
   image:
     repository: ollama/ollama
     tag: latest
@@ -9,12 +10,15 @@ ollama:
     port: 11434
     nodePort: 31434
   persistence:
+    pvcName: ollama-pvc
+    pvName: ollama-pv
     enabled: true
-    storageClass: tesseract
+    storageClass: microk8s-hostpath
     size: 500Gi
     mountPath: /root/.ollama
 
 webui:
+  name: open-webui
   enabled: true
   image:
     repository: ghcr.io/open-webui/open-webui

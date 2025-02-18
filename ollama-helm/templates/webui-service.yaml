@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: open-webui
+  name: "{{ .Values.webui.name }}"
   labels:
-    app: open-webui
+    app: "{{ .Values.webui.name }}"
 spec:
   type: {{ .Values.webui.service.type }}
   selector:
-    app: open-webui
+    app: "{{ .Values.webui.name }}"
   ports:
     - port: {{ .Values.webui.service.port }}
       targetPort: 8080

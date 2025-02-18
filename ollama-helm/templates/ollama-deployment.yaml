@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ollama
-  namespace: ollama
+  name: "{{ .Values.ollama.name }}"
+  namespace: "{{ .Values.ollama.name }}"
   labels:
-    app: ollama
+    app: "{{ .Values.ollama.name }}"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ollama
+      app: "{{ .Values.ollama.name }}"
   template:
     metadata:
       labels:
-        app: ollama
+        app: "{{ .Values.ollama.name }}"
     spec:
       nodeSelector:
         kubernetes.io/hostname: gravity
       containers:
-      - name: ollama
+      - name: "{{ .Values.ollama.name }}"
         image: "{{ .Values.ollama.image.repository }}:{{ .Values.ollama.image.tag }}"
         imagePullPolicy: "{{ .Values.ollama.image.pullPolicy }}"
         ports:
@@ -29,4 +29,4 @@ spec:
       volumes:
         - name: ollama-storage
           persistentVolumeClaim:
-            claimName: ollama-pvc
+            claimName: "{{ .Values.ollama.persistence.pvcName }}"

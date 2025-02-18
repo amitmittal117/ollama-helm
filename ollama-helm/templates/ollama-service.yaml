@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ollama
+  name: "{{ .Values.ollama.name }}"
   labels:
-    app: ollama
+    app: "{{ .Values.ollama.name }}"
 spec:
   type: {{ .Values.ollama.service.type }}
   selector:
-    app: ollama
+    app: "{{ .Values.ollama.name }}"
   ports:
   - name: http
     port: {{ .Values.ollama.service.port }}
