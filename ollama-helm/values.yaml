@@ -10,7 +10,8 @@ ollama:
     nodePort: 31434
   persistence:
     enabled: true
-    existingClaim: ollama-pvc
+    storageClass: tesseract
+    size: 500Gi
     mountPath: /root/.ollama
 
 webui:
