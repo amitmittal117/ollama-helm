@@ -22,11 +22,11 @@ spec:
         image: "{{ .Values.ollama.image.repository }}:{{ .Values.ollama.image.tag }}"
         imagePullPolicy: "{{ .Values.ollama.image.pullPolicy }}"
         ports:
-        - containerPort: 11434
+        - containerPort: {{ .Values.ollama.service.port }}
         volumeMounts:
-          - name: ollama-storage
+          - name: "{{ .Values.ollama.persistence.storage }}"
             mountPath: "{{ .Values.ollama.persistence.mountPath }}"
       volumes:
-        - name: ollama-storage
+        - name: "{{ .Values.ollama.persistence.storage }}"
           persistentVolumeClaim:
             claimName: "{{ .Values.ollama.persistence.pvcName }}"

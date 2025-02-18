@@ -10,6 +10,7 @@ ollama:
     port: 11434
     nodePort: 31434
   persistence:
+    storage: ollama-storage
     pvcName: ollama-pvc
     pvName: ollama-pv
     enabled: true
