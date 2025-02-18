@@ -15,6 +15,8 @@ spec:
       labels:
         app: ollama
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: gravity
       containers:
       - name: ollama
         image: "{{ .Values.ollama.image.repository }}:{{ .Values.ollama.image.tag }}"
